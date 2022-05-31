@@ -11,7 +11,7 @@ public class HomePage {
 	@FindBy (xpath = "//span[text()='Friends']") 
 	private WebElement friends ;
 	
-	@FindBy (xpath = "//span[text()='Marketplace']")
+	@FindBy (xpath = "//span[text()='Marketplace'//]")
 	private WebElement marketplace;
 	
 	
