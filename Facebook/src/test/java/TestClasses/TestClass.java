@@ -1,10 +1,12 @@
 package TestClasses;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -19,6 +21,7 @@ import browsers.Base;
 import pomClasses.FriendsPage;
 import pomClasses.HomePage;
 import pomClasses.LoginPage;
+import utils.Utility;
 
 public class TestClass {
 	
@@ -94,8 +97,12 @@ public class TestClass {
   }
 	
 	@AfterMethod
-	public void logoutFromApplication() throws InterruptedException
+	public void logoutFromApplication(ITestResult result) throws InterruptedException, IOException
 	{
+		if(ITestResult.FAILURE == result.getStatus())
+		{
+			Utility.captureScreenshot(driver, 110);
+		}
 		 Thread.sleep(3000);
 		 friendspage.logoutfromfb(driver);
 	 	 
